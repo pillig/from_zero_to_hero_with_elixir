@@ -51,14 +51,27 @@ defmodule Exercises.Advanced do
 
   TIP: Use the functions `String.split/2`, `String.capitalize/1`, and `Enum.join/1`.
   """
-  defp capitalize_all_list(input_list) do
-    case input_list do
-      [head] -> [String.capitalize(head)]
-      [head, tail] -> [String.capitalize(head)] ++ capitalize_all_list(tail)
+
+  def capitalize_helper(source, words_to_change) do
+    case words_to_change do
+      [] ->
+        source
+
+      [head] ->
+        String.replace(source, head, String.capitalize(head))
+
+      [head | tail] ->
+        capitalize_helper(
+          String.replace(source, head, String.capitalize(head), global: false),
+          tail
+        )
     end
   end
 
   def capitalize_all(input_string) do
-    Enum.join(capitalize_all_list(String.split(input_string, " ")), " ")
+    case input_string do
+      "" -> ""
+      _ -> capitalize_helper(input_string, String.split(input_string))
+    end
   end
 end

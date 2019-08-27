@@ -22,7 +22,6 @@ defmodule Exercises.AdvancedTest do
     assert Advanced.three_largest([5, -2]) == [-2, 5]
   end
 
-  @tag :skip
   test "capitalize_all/1" do
     assert Advanced.capitalize_all("") == ""
     assert Advanced.capitalize_all("foo bar") == "Foo Bar"
