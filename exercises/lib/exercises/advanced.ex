@@ -17,8 +17,13 @@ defmodule Exercises.Advanced do
     do_odds_and_evens(list, [], [])
   end
 
-  defp do_odds_and_evens(_list, _odds, _evens) do
-    raise "not implemented yet"
+  defp do_odds_and_evens([head, tail], odds, evens) do
+    (head % 2) == 0 -> do_odds_and_evens(tail, odds, [head | evens])
+    (head % 2) == 1 -> do_odds_and_evens(tail, [head | odds], evens)
+  end
+
+  defp do_odds_and_evens([], odds, evens) do
+    {odds, evens}
   end
 
   @doc """
